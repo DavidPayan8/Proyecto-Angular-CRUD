@@ -1,0 +1,19 @@
+<h2>Crear Nuevo Post</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="titulo">Título:</label>
+    <input formControlName="titulo" id="titulo" type="text" class="form-control">
+    <div *ngIf="form.get('titulo').touched && form.get('titulo').invalid" class="alert alert-danger">
+      <div *ngIf="form.get('titulo').errors && form.get('titulo').errors['required']"> Título no puede estar vacío </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="contenido">Contenido:</label>
+    <textarea formControlName="contenido" id="contenido" class="form-control"></textarea>
+    <div *ngIf="form.get('contenido').touched && form.get('contenido').invalid" class="alert alert-danger">
+      <div *ngIf="form.get('contenido').errors && form.get('contenido').errors['required']"> Contenido no puede estar vacío </div>
+    </div>
+  </div>
+  <button type="submit" [disabled]="form.invalid" class="btn btn-primary" [routerLink]="['post/']">Crear Post</button>
+</form>
+
